@@ -1,28 +1,98 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        clifford: 'white',
+                    },
+                    boxShadow: {
+                        'bottom': '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
+                    }
+                }
+            }
+        }
+    </script>
     <title>Mac Link</title>
+    <style>
+        .menu-icon {
+            display: none;
+        }
+
+        @media (max-width: 1024px) {
+            .menu-icon {
+                display: block;
+            }
+
+            .nav-menu {
+                display: none;
+                opacity: 0;
+                transition: opacity 0.3s ease, max-height 0.3s ease;
+                max-height: 0;
+                overflow: hidden;
+            }
+
+            .nav-menu.open {
+                display: block;
+                opacity: 1;
+                max-height: 500px; /* Adjust this value based on the menu height */
+            }
+        }
+    </style>
 </head>
+
 <body>
-    <header>
-        <h1>Welcome to Mac Link</h1>
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="services.html">Services</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-        </nav>
+    <header class="text-clifford flex flex-col fixed top-0 left-0 right-0 z-10">
+        <div class="bg-blue-800 py-2 px-8 flex justify-center">
+            <nav class="flex justify-end container">
+                <ul class="flex space-x-4 text-sm">
+                    <li><a href="index.html">contact@mail.com</a></li>
+                    <li><a href="about.html">Enquiry : +91 123456789</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="bg-white text-black py-4 px-8 flex justify-center shadow-bottom w-full transition-transform ease-in duration-500">
+            <nav class="flex justify-between container items-center flex-col lg:flex-row w-full">
+                <div class="flex items-center justify-between w-full lg:w-auto">
+                    <h1>Mac Link</h1>
+                    <div class="menu-icon cursor-pointer lg:hidden" onclick="toggleMenu()">
+                        <!-- Hamburger Icon -->
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                        </svg>
+                    </div>
+                </div>
+                <ul class="nav-menu flex-col lg:flex-row lg:flex lg:space-x-6 bg-white lg:bg-transparent text-center w-full lg:w-auto text-start mt-3">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
-    <main>
-        <h2>About Us</h2>
-        <p>Welcome to our Mac Link. We offer a variety of services to help you succeed.</p>
+    <main class="flex justify-center items-center mt-[180px]">
+        <div class="container text-center">
+            <h2>About Us</h2>
+            <p>Welcome to our Mac Link. We offer a variety of services to help you succeed.</p>
+        </div>
     </main>
-    <footer>
+    <footer class="flex justify-center">
         <p>&copy; 2024 Mac Link. All rights reserved.</p>
     </footer>
+
+    <script>
+        function toggleMenu() {
+            const navMenu = document.querySelector('.nav-menu');
+            navMenu.classList.toggle('open');
+        }
+    </script>
 </body>
+
 </html>
